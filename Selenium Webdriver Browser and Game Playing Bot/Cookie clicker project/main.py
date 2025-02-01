@@ -48,8 +48,6 @@ value_portal = int(portal_btn.text.split('-')[1].replace(',', ''))
 
 
 def check_booster(available):
-    if available < 15:
-        return
     if value_cursor <= available < value_grandma:
         return "buyCursor"
     elif value_grandma <= available < value_factory:
@@ -74,8 +72,13 @@ while time.time() - temps_debut < 120:
     time_since_started += inter
 
     if (time.time() - temps_debut) % inter2 < 0.1:
-        btn = driver.find_element(By.ID, value=check_booster(int(money.text.replace(',', ''))))
-        btn.click()
+        try:
+            # Rechercher de nouveau l'élément à chaque itération
+            booster_id = check_booster(int(money.text.replace(',', '')))
+            btn = driver.find_element(By.ID, value=booster_id)
+            btn.click()
+        except Exception as e:
+            print(f"Erreur lors du clic sur {booster_id}: {e}")
 
 print(ratio.text)
 driver.quit()
