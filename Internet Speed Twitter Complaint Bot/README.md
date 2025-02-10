@@ -6,3 +6,5 @@ above the minimum guaranteed on the contract.
 
 It uses a selenium webdriver to open a speed test, and uses the result to decide
 whether it should complain or not
+
+[Link to the project's repo](https://github.com/Songhai9/Internet-Speed-Twitter-Complaint-Bot)
